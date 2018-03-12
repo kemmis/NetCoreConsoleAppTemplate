@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net462</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hangfire" Version="1.6.17" />
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.6.17" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.6.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Topshelf" Version="4.0.3" />
+    <PackageReference Include="Topshelf.MicrosoftDependencyInjection" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetCoreConsoleAppTemplate.Core\NetCoreConsoleAppTemplate.Core.csproj" />
+    <ProjectReference Include="..\NetCoreConsoleAppTemplate.Database\NetCoreConsoleAppTemplate.Database.csproj" />
+    <ProjectReference Include="..\NetCoreConsoleAppTemplate.Services\NetCoreConsoleAppTemplate.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
