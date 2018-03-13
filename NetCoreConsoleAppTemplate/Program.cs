@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NetCoreConsoleAppTemplate.Database;
 using Topshelf;
 
 namespace NetCoreConsoleAppTemplate.App
@@ -15,6 +16,8 @@ namespace NetCoreConsoleAppTemplate.App
             var serviceProvider = new ServiceCollection()
                 .AddExampleAppConfiguration(configuration)
                 .BuildServiceProvider();
+
+            serviceProvider.Migrate<ExampleDbContext>();
 
             var configureCallback = serviceProvider.GetService<TopshelfConfigureCallback>();
 

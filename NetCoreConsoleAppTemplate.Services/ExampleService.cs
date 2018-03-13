@@ -1,5 +1,6 @@
 ﻿using Hangfire;
 using NetCoreConsoleAppTemplate.Core.Contracts.Services;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,16 +9,20 @@ namespace NetCoreConsoleAppTemplate.Services
 {
     public class ExampleService : IExampleService
     {
-        private readonly IJobCancellationToken jobCancellationToken;
+        private readonly ILogger log;
 
-        public ExampleService(IJobCancellationToken jobCancellationToken = default(IJobCancellationToken))
+        public ExampleService(ILogger log)
         {
-            this.jobCancellationToken = jobCancellationToken;
+            this.log = log;
         }
 
         public void GetExamples()
         {
+            log.Information("Starting GetExamples operation.");
+
             // todo: add some work here
+
+            log.Information("Finished GetExamples operation.");
         }
     }
 }

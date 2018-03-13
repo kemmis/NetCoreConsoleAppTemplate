@@ -5,6 +5,7 @@ using NetCoreConsoleAppTemplate.Core.Contracts.Services;
 using NetCoreConsoleAppTemplate.Database;
 using NetCoreConsoleAppTemplate.Services;
 using Hangfire;
+using Serilog;
 
 namespace NetCoreConsoleAppTemplate.App
 {
@@ -21,16 +22,32 @@ namespace NetCoreConsoleAppTemplate.App
         {
             service.AddSingleton(configuration)
                 .AddTransient<TopshelfConfigureCallback>()
+                .AddTransient<BackgroundJobServer>()
+                .AddTransient<ExampleHangfireJob>()
                 .AddTransient<IExampleService, ExampleService>()
-                    .AddDbContext<ExampleDbContext>(options =>
-                    {
-                        options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-                    }, ServiceLifetime.Transient, ServiceLifetime.Transient)
+                .AddTransient<IExampleHangfireJobManagementService, ExampleHangfireJobManagementService>()
+                .AddLogging(configuration)
+                .AddDbContext<ExampleDbContext>(options =>
+                {
+                    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                }, ServiceLifetime.Transient, ServiceLifetime.Transient)
                 .AddHangfire(x =>
                 {
                     x.UseSqlServerStorage(configuration.GetConnectionString("hangfire"))
-                    .UseColouredConsoleLogProvider();
+                     .UseColouredConsoleLogProvider();
                 });
+            return service;
+        }
+
+        public static IServiceCollection AddLogging(this IServiceCollection service, IConfiguration configuration)
+        {
+            var logger = new LoggerConfiguration()
+                                .WriteTo.LiterateConsole()
+                                .WriteTo.MSSqlServer(configuration.GetConnectionString("DefaultConnection"), "Logs", autoCreateSqlTable: true)
+                                .CreateLogger();
+
+            service.AddSingleton<ILogger>(logger);
+
             return service;
         }
     }
