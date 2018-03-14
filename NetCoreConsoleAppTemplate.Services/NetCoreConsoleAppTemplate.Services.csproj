@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NetCoreConsoleAppTemplate.Core\NetCoreConsoleAppTemplate.Core.csproj" />
+    <ProjectReference Include="..\NetCoreConsoleAppTemplate.Database\NetCoreConsoleAppTemplate.Database.csproj" />
   </ItemGroup>
 
 </Project>

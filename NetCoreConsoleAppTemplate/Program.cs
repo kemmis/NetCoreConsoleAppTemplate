@@ -17,7 +17,7 @@ namespace NetCoreConsoleAppTemplate.App
                 .AddExampleAppConfiguration(configuration)
                 .BuildServiceProvider();
 
-            serviceProvider.Migrate<ExampleDbContext>();
+            serviceProvider.Migrate<ExampleDbContext>().Seed<ExampleDbContext>();
 
             var configureCallback = serviceProvider.GetService<TopshelfConfigureCallback>();
 

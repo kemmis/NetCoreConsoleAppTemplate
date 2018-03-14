@@ -6,6 +6,8 @@ using NetCoreConsoleAppTemplate.Database;
 using NetCoreConsoleAppTemplate.Services;
 using Hangfire;
 using Serilog;
+using Serilog.AspNetCore;
+using NetCoreConsoleAppTemplate.Database.Seed;
 
 namespace NetCoreConsoleAppTemplate.App
 {
@@ -24,6 +26,7 @@ namespace NetCoreConsoleAppTemplate.App
                 .AddTransient<TopshelfConfigureCallback>()
                 .AddTransient<BackgroundJobServer>()
                 .AddTransient<ExampleHangfireJob>()
+                .AddTransient<IDbInitializer<ExampleDbContext>, DbInitializer>()
                 .AddTransient<IExampleService, ExampleService>()
                 .AddTransient<IExampleHangfireJobManagementService, ExampleHangfireJobManagementService>()
                 .AddLogging(configuration)
@@ -33,20 +36,20 @@ namespace NetCoreConsoleAppTemplate.App
                 }, ServiceLifetime.Transient, ServiceLifetime.Transient)
                 .AddHangfire(x =>
                 {
-                    x.UseSqlServerStorage(configuration.GetConnectionString("hangfire"))
-                     .UseColouredConsoleLogProvider();
+                    x.UseSqlServerStorage(configuration.GetConnectionString("hangfire"));
                 });
             return service;
         }
 
         public static IServiceCollection AddLogging(this IServiceCollection service, IConfiguration configuration)
         {
-            var logger = new LoggerConfiguration()
-                                .WriteTo.LiterateConsole()
-                                .WriteTo.MSSqlServer(configuration.GetConnectionString("DefaultConnection"), "Logs", autoCreateSqlTable: true)
-                                .CreateLogger();
+            Log.Logger = new LoggerConfiguration()
+                                 .WriteTo.LiterateConsole()
+                                 .WriteTo.MSSqlServer(configuration.GetConnectionString("DefaultConnection"), "Logs", autoCreateSqlTable: true)
+                                 .CreateLogger();
 
-            service.AddSingleton<ILogger>(logger);
+            service.AddSingleton<Microsoft.Extensions.Logging.ILoggerFactory>(new SerilogLoggerFactory(Log.Logger));
+            service.AddSingleton<ILogger>(Log.Logger);
 
             return service;
         }
