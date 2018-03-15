@@ -22,6 +22,8 @@ namespace NetCoreConsoleAppTemplate.App
             var configureCallback = serviceProvider.GetService<TopshelfConfigureCallback>();
 
             HostFactory.Run(configureCallback.Action);
+
+            serviceProvider.FlushLogger();
         }
     }
 }

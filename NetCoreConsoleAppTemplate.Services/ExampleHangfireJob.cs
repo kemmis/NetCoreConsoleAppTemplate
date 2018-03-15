@@ -22,7 +22,7 @@ namespace NetCoreConsoleAppTemplate.Services
         public void Run(IJobCancellationToken jobCancellationToken)
         {
             log.Information("Starting ExampleHangfireJob.");
-            exampleService.GetExamples();
+            exampleService.GetExamples(jobCancellationToken.ShutdownToken);
             log.Information("Finished ExampleHangfireJob.");
         }
     }

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using NetCoreConsoleAppTemplate.Core.Contracts.Services;
+using Serilog;
+using System.Threading;
+using Serilog.Core;
 
 namespace NetCoreConsoleAppTemplate.App
 {
@@ -12,11 +15,13 @@ namespace NetCoreConsoleAppTemplate.App
         private readonly IServiceProvider serviceProvider;
         private readonly IExampleHangfireJobManagementService jobManagementService;
         private BackgroundJobServer _server;
-
-        public ExampleHangfireServer(IServiceProvider serviceProvider, IExampleHangfireJobManagementService jobManagementService)
+        private readonly ILogger logger;
+        public ExampleHangfireServer(IServiceProvider serviceProvider,
+            IExampleHangfireJobManagementService jobManagementService, ILogger logger)
         {
             this.serviceProvider = serviceProvider;
             this.jobManagementService = jobManagementService;
+            this.logger = logger;
         }
 
         public void Start()

@@ -20,10 +20,12 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.0-preview1-final" />
     <PackageReference Include="Serilog" Version="2.7.1-dev-00960" />
     <PackageReference Include="Serilog.AspNetCore" Version="2.1.1" />
+    <PackageReference Include="Serilog.Sinks.ColoredConsole" Version="3.0.1" />
     <PackageReference Include="Serilog.Sinks.Literate" Version="3.0.1-dev-00044" />
     <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="5.1.1" />
     <PackageReference Include="Topshelf" Version="4.0.3" />
     <PackageReference Include="Topshelf.MicrosoftDependencyInjection" Version="1.1.0" />
+    <PackageReference Include="Topshelf.Serilog" Version="4.0.3" />
   </ItemGroup>
 
   <ItemGroup>

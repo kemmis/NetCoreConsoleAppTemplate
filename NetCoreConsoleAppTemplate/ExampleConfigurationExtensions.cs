@@ -8,6 +8,7 @@ using Hangfire;
 using Serilog;
 using Serilog.AspNetCore;
 using NetCoreConsoleAppTemplate.Database.Seed;
+using System;
 
 namespace NetCoreConsoleAppTemplate.App
 {
@@ -44,12 +45,22 @@ namespace NetCoreConsoleAppTemplate.App
         public static IServiceCollection AddLogging(this IServiceCollection service, IConfiguration configuration)
         {
             Log.Logger = new LoggerConfiguration()
-                                 .WriteTo.LiterateConsole()
+                                 .WriteTo.ColoredConsole()
                                  .WriteTo.MSSqlServer(configuration.GetConnectionString("DefaultConnection"), "Logs", autoCreateSqlTable: true)
                                  .CreateLogger();
 
             service.AddSingleton<Microsoft.Extensions.Logging.ILoggerFactory>(new SerilogLoggerFactory(Log.Logger));
             service.AddSingleton<ILogger>(Log.Logger);
+
+            return service;
+        }
+
+        public static IServiceProvider FlushLogger(this IServiceProvider service)
+        {
+            if (Log.Logger is IDisposable log)
+            {
+                log.Dispose();
+            }
 
             return service;
         }

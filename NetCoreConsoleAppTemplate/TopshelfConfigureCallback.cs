@@ -23,6 +23,7 @@ namespace NetCoreConsoleAppTemplate.App
                 return x =>
                 {
                     x.UseMicrosoftDependencyInjection(services);
+                    x.UseSerilog();
 
                     x.Service<ExampleHangfireServer>(s =>
                     {
@@ -35,7 +36,7 @@ namespace NetCoreConsoleAppTemplate.App
 
                     x.SetDescription("Example Service");
                     x.SetDisplayName("Example Service");
-                    x.SetServiceName("Example Service");
+                    x.SetServiceName("Example Service");                    
                 };
             }
         }
