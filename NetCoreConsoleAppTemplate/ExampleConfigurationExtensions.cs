@@ -9,6 +9,7 @@ using Serilog;
 using Serilog.AspNetCore;
 using NetCoreConsoleAppTemplate.Database.Seed;
 using System;
+using Serilog.Events;
 
 namespace NetCoreConsoleAppTemplate.App
 {
@@ -45,9 +46,11 @@ namespace NetCoreConsoleAppTemplate.App
         public static IServiceCollection AddLogging(this IServiceCollection service, IConfiguration configuration)
         {
             Log.Logger = new LoggerConfiguration()
-                                 .WriteTo.ColoredConsole()
-                                 .WriteTo.MSSqlServer(configuration.GetConnectionString("DefaultConnection"), "Logs", autoCreateSqlTable: true)
-                                 .CreateLogger();
+                                .MinimumLevel.Verbose()
+                                .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+                                .WriteTo.ColoredConsole()
+                                .WriteTo.MSSqlServer(configuration.GetConnectionString("DefaultConnection"), "Logs", autoCreateSqlTable: true)
+                                .CreateLogger();
 
             service.AddSingleton<Microsoft.Extensions.Logging.ILoggerFactory>(new SerilogLoggerFactory(Log.Logger));
             service.AddSingleton<ILogger>(Log.Logger);
