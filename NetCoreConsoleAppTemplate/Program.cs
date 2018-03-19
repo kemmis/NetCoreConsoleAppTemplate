@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetCoreConsoleAppTemplate.Database;
-using System;
 using Topshelf;
 
 namespace NetCoreConsoleAppTemplate.App

@@ -3,13 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreConsoleAppTemplate.App", "NetCoreConsoleAppTemplate\NetCoreConsoleAppTemplate.App.csproj", "{95529BD4-04FA-4572-A7E8-DD2BCBF962EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreConsoleAppTemplate.App", "NetCoreConsoleAppTemplate\NetCoreConsoleAppTemplate.App.csproj", "{95529BD4-04FA-4572-A7E8-DD2BCBF962EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreConsoleAppTemplate.Services", "NetCoreConsoleAppTemplate.Services\NetCoreConsoleAppTemplate.Services.csproj", "{3C19EF30-84E2-40B3-B70E-EF900EED905C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreConsoleAppTemplate.Services", "NetCoreConsoleAppTemplate.Services\NetCoreConsoleAppTemplate.Services.csproj", "{3C19EF30-84E2-40B3-B70E-EF900EED905C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreConsoleAppTemplate.Core", "NetCoreConsoleAppTemplate.Core\NetCoreConsoleAppTemplate.Core.csproj", "{4E2E0B48-A977-4EE3-AE0B-54B14633265F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreConsoleAppTemplate.Core", "NetCoreConsoleAppTemplate.Core\NetCoreConsoleAppTemplate.Core.csproj", "{4E2E0B48-A977-4EE3-AE0B-54B14633265F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreConsoleAppTemplate.Database", "NetCoreConsoleAppTemplate.Database\NetCoreConsoleAppTemplate.Database.csproj", "{CB6C6433-3474-43E2-823C-ABC30BC24D59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreConsoleAppTemplate.Database", "NetCoreConsoleAppTemplate.Database\NetCoreConsoleAppTemplate.Database.csproj", "{CB6C6433-3474-43E2-823C-ABC30BC24D59}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{01EBC063-071F-4A8F-9CCC-FE4C354C0232}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
