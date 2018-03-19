@@ -2,7 +2,7 @@
 
 ## An example Hangfire/Topshelf application that primarily uses .Net Standard 2.0 libraries<sup>*</sup>.
 
-#### <sup>*</sup> Topshelf does not yet target .Net Standard
+#### <sup>*</sup> Topshelf does not yet target .Net Standard so technically the console application project targets net461, not netstandard2.0.
 
 # Example Includes:
 
